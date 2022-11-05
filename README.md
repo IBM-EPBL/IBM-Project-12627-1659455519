@@ -20,12 +20,14 @@ const Project = {
                         Co-organizer: "Mr. JAVED AHMED 🤩",
                         Mentor: "Mr. E.Prabhakar 👨‍💻",
                         Evaluator: "Mr. S.Thiruvenkatasamy 👨‍💼",
+                        Industry Evaluator: "Mrs. Swathi 👩‍💼",
+                        Industry Mentor: "Mr. HariPrabu 👨‍💻"                        
                       },
   Our Team: {
                         Team Lead: "Mr. S.LingaPrabu 💚",
                         Member 1: "Mr. P.Abinathan 💙",
                         Member 2: "Mr. V.Ramkumar 💛",
-                        Member 3: "Mr. M.Surya 💜",
+                        Member 3: "Mr. M.Surya 💜"
                       },
                         
  Our Motive: "To Give A User Perfect Working prototype model."
