@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction</title>
+<link rel="stylesheet" href="../static/login.css">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Vehicle Damage Detection</div>
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </div>
+    </ul>
+  </nav>
+<div class="prediction" id="prediction-form-wrap">
+  <form action="/result" method="POST" enctype="multipart/form-data" id="prediction-form">
+    <p>
+    <input type="file" accept="image/*" id="file" name="file" required>
+    </p>
+    <p>
+    <input type="submit" id="submit" value="Submit">
+    </p>
+  </form>
+</div>
+<h1>The Estimated cost for the damage is : {{prediction}}</h1>
+<footer>
+  <div class="footer-content">
+    <p>Copyright &copy; 2022.All Rights Reserved</p>
+  </div>
+ </footer>
+  
+</body>
+</html>

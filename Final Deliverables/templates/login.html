@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+<link rel="stylesheet" href="../static/login.css">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Login Page</div>
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </div>
+    </ul>
+  </nav>
+<div id="login-form-wrap">
+  <img width="200vw" height="200vw" src="../static/images/Login.png" alt="login">
+  <p>{{errors}}</p>
+  <form id="login-form" action="/login/" enctype="multipart/form-data" method="POST">
+    <p>
+    <input type="email" id="email" name="email" placeholder="Enter Registered Email ID" required>
+    </p>
+    <p>
+      <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    </p>
+    <p>
+    <input type="submit" id="Login" value="Login">
+    </p>
+  </form>
+</div>
+<footer>
+  <div class="footer-content">
+    <p>Copyright &copy; 2022.All Rights Reserved</p>
+  </div>
+ </footer>
+  
+</body>
+</html>
