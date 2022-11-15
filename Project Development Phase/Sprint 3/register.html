@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+<link rel="stylesheet" href="../static/login.css">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Vehicle Damage Detection</div>
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </div>
+    </ul>
+  </nav>
+<div id="register-form-wrap">
+  <img width="200vw" height="200vw" src="../static/images/register.jpg" alt="register">
+  <p>{{errors}}</p>
+  <form id="register-form" action="/register" enctype="multipart/form-data" method="POST">
+    <p>
+    <input type="text" id="name" name="name" placeholder="Enter Name" required>
+    </p>
+    <p>
+    <input type="email" id="email" name="email" placeholder="Enter Email ID" required>
+    </p>
+    <p>
+      <input type="password" id="password" minlength="6" name="password" placeholder="Enter Password" required>
+    </p>
+    <p>
+    <input type="submit" id="Register" value="Register">
+    </p>
+  </form>
+  <div id="already">
+    <p>Already have an account? <a href="/login">Login</a><p>
+  </div><!--already-->
+</div>
+<footer>
+  <div class="footer-content">
+    <p>Copyright &copy; 2022.All Rights Reserved</p>
+  </div>
+ </footer>
+  
+</body>
+</html>
