@@ -14,10 +14,10 @@
 const Project = {
   Users: "Car Owner" | "Insurance Company",
   code: [Javascript, HTML, CSS, Python],
-  tools: [Flash, Vs Code],
+  tools: [Flask, Vs Code],
   Algorithm: ["VGG16", "VGG19"],
   Supporters: {
-                        Co-organizer: "Mr. JAVED AHMED 🤩",
+                        Organizer: "Mr. JAVED AHMED 🤩",
                         Mentor: "Mr. E.Prabhakar 👨‍💻",
                         Evaluator: "Mr. S.Thiruvenkatasamy 👨‍💼",
                         Industry Evaluator: "Mrs. Swathi 👩‍💼",
