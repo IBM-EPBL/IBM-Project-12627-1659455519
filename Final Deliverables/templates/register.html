@@ -22,15 +22,15 @@
 <div id="register-form-wrap">
   <img width="200vw" height="200vw" src="../static/images/register.jpg" alt="register">
   <p>{{errors}}</p>
-  <form id="register-form" action="/register" enctype="multipart/form-data" method="POST">
+  <form id="register-form" action="/afterreg" enctype="multipart/form-data" method="POST">
     <p>
     <input type="text" id="name" name="name" placeholder="Enter Name" required>
     </p>
     <p>
-    <input type="email" id="email" name="email" placeholder="Enter Email ID" required>
+    <input type="email" id="email" name="_id" placeholder="Enter Email ID" required>
     </p>
     <p>
-      <input type="password" id="password" minlength="6" name="password" placeholder="Enter Password" required>
+      <input type="password" id="password" minlength="6" name="psw" placeholder="Enter Password" required>
     </p>
     <p>
     <input type="submit" id="Register" value="Register">

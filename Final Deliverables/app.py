@@ -8,25 +8,14 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.python.ops.gen_array_ops import concat
 from tensorflow.keras.applications.inception_v3 import preprocess_input
 import requests
-import pyrebase
+from cloudant.client import Cloudant
 
 model1=load_model('./Model/body.h5')
 model2 = load_model('./Model/level.h5')
 app=Flask(__name__)
-
-config = {
-    "apiKey": "AIzaSyAb9hsB-xOPtt5wker-s0iw6KsYExi6r0w",
-    "authDomain": "vehicle-damage-detection-840aa.firebaseapp.com",
-    "projectId": "vehicle-damage-detection-840aa",
-    "storageBucket": "vehicle-damage-detection-840aa.appspot.com",
-    "messagingSenderId": "33611026551",
-    "appId": "1:33611026551:web:db531a9a6623d72fb93672",
-    "measurementId": "G-C32ENMFQ1Z",
-    "databaseURL": ""
-}
-firebase = pyrebase.initialize_app(config)
-autha = firebase.auth()
-app.secret_key = "secret"
+client = Cloudant.iam("c059a4ef-8c13-4d65-bc33-da592b41838a-bluemix", "511lW2p85eY0cZqJRC5srXUULERV69Ru9z9UxM4lwngE", connect=True)
+my_database=client.create_database('my_database')
+app.secret_key = 'Nothing'
 
 @app.route('/')
 def index():
@@ -37,30 +26,53 @@ def home():
 
 @app.route('/register/', methods=["GET","POST"])
 def register():
-    if request.method=="POST":
-        email=request.form.get('email')
-        password=request.form.get('password')
-        try:
-            autha.create_user_with_email_and_password(email,password)
-            return render_template('login.html')
-        except:
-            return render_template('register.html',errors="Something Went Wrong Try Again")
     return render_template('register.html')
+
+@app.route('/afterreg/', methods=["GET","POST"])
+def afterreg():
+    x=[x for x in request.form.values()]
+    print(x)
+    data={
+        '_id':x[1],
+        'name':x[0],
+        'psw':x[2]
+    }
+    print(data)
+    query={'_id':{'$eq': data['_id']}}
+    docs= my_database.get_query_result(query)
+    print(docs)
+    print(len(docs.all()))
+    if(len(docs.all())==0):
+        url=my_database.create_document(data)
+        return render_template('register.html', errors="Registration Successful, Please Login")
+    else:
+        return render_template('register.html', errors="Your Account already exist, Please Login Using that")
 
 @app.route('/login/',methods=["GET","POST"])
 def login():
     if('user' in session):
         return render_template('prediction.html')
-    if request.method == "POST":
-        email = request.form.get('email')
-        password = request.form.get('password')
-        try:
-            user=autha.sign_in_with_email_and_password(email,password)
-            session['user']=email
-            return render_template('prediction.html')
-        except:
-            return render_template('login.html', errors="Failed To Login")
-    return render_template('login.html')
+    else:
+        return render_template('login.html')
+
+
+@app.route('/afterlogin/', methods=["GET", "POST"])
+def afterlogin():
+    user=request.form['_id']
+    passw=request.form['psw']
+    print(user,passw)
+    query={'_id':{'$eq':user}}
+    docs=my_database.get_query_result(query)
+    print(docs)
+    print(len(docs.all()))
+    if(len(docs.all())==0):
+        return render_template('login.html', errors="Username not found")
+    else:
+        if((user==docs[0][0]['_id'] and passw==docs[0][0]['psw'])):
+            session['user'] = user
+            return redirect(url_for('prediction'))
+        else:
+            return render_template('login.html', errors="Wrong Credentials.")
 
 @app.route('/logout/')
 def logout():
