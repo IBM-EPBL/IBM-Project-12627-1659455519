@@ -15,6 +15,12 @@
   background-color: #333333;
   color: #fff;
  }
+ #file-ip-1-preview{
+    width:100%;
+    margin-top: 5%;
+    display:none;
+    margin-bottom:30px;
+ }
  .nav-links a {
   color: #edefec;
  }

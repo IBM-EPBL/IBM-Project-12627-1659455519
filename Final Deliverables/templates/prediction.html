@@ -4,7 +4,34 @@
   <meta charset="UTF-8">
   <title>Prediction</title>
 <link rel="stylesheet" href="../static/login.css">
-
+<style>
+  label {
+  display:block;
+  width:100%;
+  margin-top: 5%;
+  height:55px;
+  line-height:50px;
+  text-align:center;
+  background:#1172c2;
+  color:#fff;
+  font-size:15px;
+  font-family:"Open Sans",sans-serif;
+  text-transform:Uppercase;
+  font-weight:600;
+  border-radius:5px;
+  cursor:pointer;
+}
+</style>
+<script>
+  function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+</script>
 </head>
 <body>
   <nav class="navbar">
@@ -21,14 +48,19 @@
 <div class="prediction" id="prediction-form-wrap">
   <form action="/result" method="POST" enctype="multipart/form-data" id="prediction-form">
     <p>
-    <input type="file" accept="image/*" id="file" name="file" required>
+      <label for="file">Upload Image</label>
+    <input type="file" style="display: none;" accept="image/*" id="file" name="file" onchange="showPreview(event);" required>
     </p>
+    <div class="preview">
+      <img id="file-ip-1-preview">
+    </div>
+
     <p>
     <input type="submit" id="submit" value="Submit">
     </p>
   </form>
 </div>
-<h1>The Estimated cost for the damage is : {{prediction}}</h1>
+<h1>Your Car Damaged ( {{damage}} ) in ({{area}})<br> The Estimated Cost For The Damage Is : {{prediction}}</h1>
 <footer>
   <div class="footer-content">
     <p>Copyright &copy; 2022.All Rights Reserved</p>

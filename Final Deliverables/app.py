@@ -100,31 +100,31 @@ def res():
         img_data=preprocess_input(x)
         prediction1=np.argmax(model1.predict(img_data))
         prediction2=np.argmax(model2.predict(img_data))
-        index1=['front','rear','side']
-        index2=['minor','moderate','severe']
+        index1=['Front','Rear','Side']
+        index2=['Minor','Moderate','Severe']
         result1=index1[prediction1]
         result2=index2[prediction2]
-        if(result1=="front" and result2=="minor"):
+        if(result1=="Front" and result2=="Minor"):
             value="3000 - 5000 INR"
-        elif(result1 == "front" and result2 == "moderate"):
+        elif(result1 == "Front" and result2 == "Moderate"):
             value = "6000 - 8000 INR"
-        elif(result1 == "front" and result2 == "severe"):
+        elif(result1 == "Front" and result2 == "Severe"):
             value = "9000 - 11000 INR"
-        elif(result1 == "rear" and result2 == "minor"):
+        elif(result1 == "Rear" and result2 == "Minor"):
             value = "4000 - 6000 INR"
-        elif(result1 == "rear" and result2 == "moderate"):
+        elif(result1 == "Rear" and result2 == "Moderate"):
             value = "7000 - 9000 INR"
-        elif(result1 == "rear" and result2 == "severe"):
+        elif(result1 == "Rear" and result2 == "Severe"):
             value = "11000 - 13000 INR"
-        elif(result1 == "side" and result2 == "minor"):
+        elif(result1 == "Side" and result2 == "Minor"):
             value = "6000 - 8000 INR"
-        elif(result1 == "side" and result2 == "moderate"):
+        elif(result1 == "Side" and result2 == "Moderate"):
             value = "9000 - 11000 INR"
-        elif(result1 == "side" and result2 == "severe"):
+        elif(result1 == "Side" and result2 == "Severe"):
             value = "12000 - 15000 INR"
         else:
             value="16000 - 50000 INR"
-        return render_template('prediction.html',prediction=value)
+        return render_template('prediction.html',prediction=value,damage=result2,area=result1)
 
 
 if __name__ == "__main__":
